@@ -1,0 +1,1 @@
+require 'bs_columns/railtie' if defined?(Rails)

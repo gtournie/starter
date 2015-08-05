@@ -1,0 +1,21 @@
+%p
+  Bonjour #{@name},
+
+%p
+  Merci de votre inscription sur #{Settings.app_name}.
+
+%p
+  Pour confirmer votre adresse e-mail, il vous suffit de cliquer sur le lien suivant :
+  = link_to 'Terminer votre inscription', confirmation_url(@resource, confirmation_token: @token)
+
+%p
+  Le lien ne fonctionne pas ? Copiez l'adresse suivante dans votre navigateur :
+  = confirmation_url(@resource, confirmation_token: @token)
+
+%p
+  Cette procédure nous permet d'être sûrs que votre adresse email est valide et
+  que vous recevrez bien les messages que nous vous enverrons.
+
+%p
+  À très bientôt !
+

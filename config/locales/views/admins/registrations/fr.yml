@@ -1,0 +1,13 @@
+fr:
+  admins:
+    registrations:
+      edit_password:
+        title: Changement de mot de passe
+        password: Nouveau mot de passe
+      edit_personal:
+        title: Informations personnelles
+  simple_form:
+    labels:
+      admin:
+        current_password: Mot de passe actuel
+        password_confirmation: Confirmation du mot de passe

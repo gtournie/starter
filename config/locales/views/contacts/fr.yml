@@ -1,0 +1,14 @@
+fr:
+  contacts:
+    new:
+      title: Contactez-nous
+  simple_form:
+    labels:
+      message:
+        name: Nom complet
+        email: Email
+        content: Message
+  helpers:
+    submit:
+      message:
+        create: Envoyer

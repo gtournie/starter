@@ -1,0 +1,40 @@
+%ul.nav.navbar-nav
+  %li.dropdown
+    %a{ href: '#fixme' }
+      %span= t('.fixme')
+%ul.nav.navbar-nav.navbar-right
+  %li.dropdown
+    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      %span
+        = t('.fixme')
+        = icon('angle-down')
+    %ul.dropdown-menu
+      %li
+        %a{ href: '#fixme' }
+      %span= t('.fixme')
+      %li
+        %a{ href: '#fixme' }
+          %span= t('.fixme')
+  %li.dropdown
+    %a{ href: admin_admins_path }
+      %span= t('activerecord.models.admin.other')
+  %li.dropdown
+    %a{ href: admin_users_path }
+      %span= t('activerecord.models.user.other')
+
+
+  %li.dropdown
+    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      = t('.account')
+      %b.caret
+    %ul.dropdown-menu
+      %li
+        %a{ href: edit_admin_registration_path }
+          %span= t(".edit_account")
+      %li
+        %a{ href: edit_admin_registration_path(change_password: '') }
+          %span= t(".change_password")
+      -#%li.divider
+      %li
+        %a{ href: destroy_admin_session_path, data: { method: :delete } }
+          %span= t(".sign_out")

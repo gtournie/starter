@@ -1,0 +1,7 @@
+fr:
+  users:
+    sessions:
+      new:
+        title: Authentification
+        forgot_password: Mot de passe perdu ?
+        submit: Connexion

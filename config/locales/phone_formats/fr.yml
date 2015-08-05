@@ -1,0 +1,2 @@
+fr:
+  mobile_format: !ruby/regexp /^[67]/

@@ -1,0 +1,9 @@
+fr:
+  admins:
+    admins:
+      index:
+        title: Liste des administrateurs
+        new: Nouvel administrateur
+      edit:
+        title: Nouvel administrateur
+        change_password: Changer de mot de passe

@@ -1,0 +1,10 @@
+%p
+  %strong Nom :
+  = @message.name
+  %br/
+  %strong E-mail :
+  = mail_to(@message.email, @message.email)
+  %br/
+  %strong Message :
+  %br/
+= simple_format(@message.content)

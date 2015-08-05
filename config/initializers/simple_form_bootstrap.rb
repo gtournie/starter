@@ -1,7 +1,7 @@
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   config.error_notification_class = 'alert alert-danger'
-  config.button_class = 'btn btn-default'
+  config.button_class = 'btn btn-primary btn-block'
   config.boolean_label_class = nil
 
   config.wrappers :vertical_form, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
@@ -121,6 +121,30 @@ SimpleForm.setup do |config|
     b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
+
+  # Custom
+  config.wrappers :date_select, class: 'form-group', error_class: 'has-error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label, class: 'control-label'
+    b.wrapper class: 'form-group date-selects' do |inputs|
+      inputs.use :input, class: 'form-control'
+      inputs.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+      inputs.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    end
+  end
+
+  config.wrappers :time_select, class: 'form-group', error_class: 'has-error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label, class: 'control-label'
+    b.wrapper class: 'form-group time-selects' do |inputs|
+      inputs.use :input, class: 'form-control'
+      inputs.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+      inputs.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    end
+  end
+  # End custom
 
   # Wrappers for forms and inputs using the Bootstrap toolkit.
   # Check the Bootstrap docs (http://getbootstrap.com)

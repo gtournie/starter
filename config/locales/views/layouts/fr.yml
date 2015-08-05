@@ -1,0 +1,24 @@
+fr:
+  layouts:
+    menus:
+      admins:
+        profile: Mon profil
+        account: Mon compte
+        edit_account: Mes informations
+        change_password: Changer de mot de passe
+        sign_out: Déconnexion
+      users:
+        profile: Mon profil
+        account: Mon compte
+        edit_account: Mes informations
+        change_password: Changer de mot de passe
+        sign_out: Déconnexion
+    header:
+      toggle_navigation: Menu
+      sign_up: Inscription
+      login: Connexion
+      home: Accueil
+    footer:
+      contact: Contactez-nous
+      follow_us: Suivez-nous !
+

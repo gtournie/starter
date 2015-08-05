@@ -1,0 +1,12 @@
+---
+:concurrency: 25
+:pidfile: ./tmp/pids/sidekiq.pid
+:logfile: ./log/sidekiq.log
+
+development:
+  :queues:
+    - [default, 7]
+
+production:
+  :queues:
+    - [default, 5]

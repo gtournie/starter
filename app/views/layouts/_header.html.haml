@@ -1,0 +1,23 @@
+%header#header
+  .container
+    %nav#nav.navbar.navbar-collapsed-sm.navbar-default(role="navigation")
+      .navbar-header
+        %button.navbar-toggle{ data: { target: ".navbar-header-collapse", toggle: "collapse" }, type: "button" }
+          %span.sr-only= t('.toggle_navigation')
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a{ href: root_path, class: "navbar-brand text-contrast" }
+          %span.fa.fa-rocket
+          %span.brand-name= Settings.app_name
+      .navbar-header-collapse.collapse.navbar-collapse
+        - if user_signed_in?
+          = render partial: "layouts/menus/users"
+        - else
+          %ul.nav.navbar-nav.navbar-right
+            %li.dropdown
+              %a{ href: new_user_registration_path }
+                %span= t('.sign_up')
+            %li.dropdown
+              %a{ href: new_user_session_path }
+                %span= t(".login")

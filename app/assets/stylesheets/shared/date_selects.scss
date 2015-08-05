@@ -1,0 +1,28 @@
+﻿
+.form-group.date {
+  margin-bottom: 0;
+}
+
+.form-group.date-selects {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 15px;
+
+  select.date {
+    display: table-cell;
+  }
+
+  // date_select. use with_css_classes
+  .date {
+    &.day { width: 26.66666666%; }
+    &.month { width: 40%; }
+    &.year { width: 33.33333333%; }
+  }
+
+  // without days
+  [type="hidden"] {
+    &+ .month.date { width: 53.33333333%; }
+    &+ .month.date + .year.date { width: 46.66666666%; }
+  }
+}

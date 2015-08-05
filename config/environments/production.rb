@@ -1,3 +1,5 @@
+﻿require 'staff'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -24,7 +26,7 @@ Rails.application.configure do
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
+  config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -62,7 +64,9 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.default_url_options = { :host => 'XX.XX.XX.XX TODO' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -80,8 +84,15 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  #->Prelang
-  GA.tracker = ""
+  # Google Analytics tracker
+  # GA.tracker = ""
+
+  config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[#{Settings.app_name.upcase} ERROR] ",
+      :sender_address => %{"#{Settings.app_name} notifier" <no-reply@#{Settings.app_domain}>},
+      :exception_recipients => Staff::EMAILS.values
+    }
 
 end
 

@@ -1,0 +1,35 @@
+%footer#footer
+  #footer-main
+    .container
+      .row
+        - bs_column do
+          %h2.title= t('.fixme')
+          %p= link_to t('.contact'), new_contact_path
+          %p= link_to t('.fixme'), '#fixme_path'
+          %p= link_to t('.fixme'), '#fixme_path'
+        - bs_column do
+          %h2.title= t('.follow_us')
+          %p
+            %span.fa.fa-facebook.fa-2x
+            = link_to 'Facebook', Settings.facebook.url, target: '_blank'
+          %p
+            %span.fa.fa-twitter.fa-2x
+            = link_to 'Twitter', Settings.twitter.url, target: '_blank'
+          %p
+            %span.fa.fa-google-plus.fa-2x
+            = link_to 'Google+', Settings.google_plus.url, target: '_blank'
+          %p
+            %span.fa.fa-linkedin.fa-2x
+            = link_to 'LinkedIn+', Settings.linked_in.url, target: '_blank'
+
+        = bs_columns({ md: 2, sm: 2 })
+
+  #footer-copyright
+    .container
+      .row
+        .col-lg-12
+          %p.text-center
+            Copyright
+            %span.fa.fa-copyright
+            2015
+            = Settings.app_name

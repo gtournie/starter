@@ -1,0 +1,14 @@
+fr:
+  activerecord:
+    models:
+      user:
+        one: Utilisateur
+        other: Utilisateurs
+    attributes:
+      user:
+        name: Nom
+        first_name: Prénom
+        last_name: Nom
+        email: Email
+        password: Mot de passe
+        remember_me: Se souvenir de moi

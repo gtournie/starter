@@ -1,0 +1,28 @@
+﻿.container-fluid
+  %h1
+    %span.fa.fa-list
+    = t('.title')
+
+  .row
+    .col-md-12
+      = link_to new_admin_user_path, class: 'btn btn-primary' do
+        %span.fa.fa-plus
+        = t('.new')
+
+    .col-md-12
+      = page_entries_info users
+      = paginate users
+
+      - unless users.empty?
+        %table.table.table-striped.table-hover.table-condensed
+          %thead
+            %tr
+              %th= link_to_sorted t('activerecord.attributes.user.name'), [:last_name, :first_name]
+              %th= link_to_sorted t('activerecord.attributes.user.email'), :email
+          %tbody
+            - users.each do |u|
+              %tr.clickable-row{ data: { href: edit_admin_user_path(u) } }
+                %td= u.name
+                %td= u.email
+
+      = paginate users

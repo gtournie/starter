@@ -1,12 +1,55 @@
 Rails.application.routes.draw do
-  get 'landings/index'
+  if Rails.env.development?
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
-  devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  devise_for :users, controllers: {
+      registrations:      "users/registrations",
+      sessions:           "users/sessions",
+      passwords:          "users/passwords",
+      # omniauth_callbacks: "users/omniauth_callbacks"
+  }, skip: [:sessions, :registrations]
+
+  devise_for :admins, controllers: {
+      registrations:      "admins/registrations",
+      sessions:           "admins/sessions",
+      passwords:          "admins/passwords"
+  }, skip: [:sessions, :registrations]
 
   # You can have the root of your site routed with "root"
-  root 'landings#index'
+  root 'home#index'
+
+  resource :contact, only: [:new, :create]
+
+  scope :admin, module: 'admins', as: 'admin' do
+    resources :admins
+    resources :users
+  end
+
+  devise_scope :user do
+    get    'welcome' => 'users/registrations#edit',   as: :user_root
+
+    get    'login'   => "users/sessions#new",         as: :new_user_session
+    post   'login'   => "users/sessions#create",      as: :user_session
+    delete 'signout' => "users/sessions#destroy",     as: :destroy_user_session
+           '       '
+    get    'signup'  => "users/registrations#new",    as: :new_user_registration
+    post   'signup'  => "users/registrations#create", as: :user_registration
+    put    'signup'  => "users/registrations#update", as: :update_user_registration
+    get    'account' => "users/registrations#edit",   as: :edit_user_registration
+  end
+
+  devise_scope :admin do
+    get    'admin/welcome' => 'admins/registrations#edit',   as: :admin_root
+
+    get    "admin"         => "admins/sessions#new",         as: :new_admin_session
+    post   "admin/login"   => "admins/sessions#create",      as: :admin_session
+    delete "admin/signout" => "admins/sessions#destroy",     as: :destroy_admin_session
+
+    put    "admin/signup"  => "admins/registrations#update", as: :update_admin_registration
+    get    "admin/account" => "admins/registrations#edit",   as: :edit_admin_registration
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -56,17 +99,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  
-  #->Prelang (user_login:devise/stylized_paths)
-  devise_scope :user do
-    get    "login"   => "users/sessions#new",         as: :new_user_session
-    post   "login"   => "users/sessions#create",      as: :user_session
-    delete "signout" => "users/sessions#destroy",     as: :destroy_user_session
-    
-    get    "signup"  => "users/registrations#new",    as: :new_user_registration
-    post   "signup"  => "users/registrations#create", as: :user_registration
-    put    "signup"  => "users/registrations#update", as: :update_user_registration
-    get    "account" => "users/registrations#edit",   as: :edit_user_registration
-  end
-
 end

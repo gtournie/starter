@@ -1,0 +1,22 @@
+.col-sm-6.col-sm-offset-3.col-lg-4.col-lg-offset-4
+  .container-fluid
+    %h1
+      %span.fa.fa-lock
+      = t('.title')
+
+  = simple_form_for resource, as: resource_name, url: session_path(resource_name),
+      html: { class: 'form-admin' } do |f|
+
+    .row
+      .col-xs-12
+        = f.error_notification
+        = f.input :email, required: true
+        = f.input :password, required: true
+        - checked = (x = (params[resource.class.to_s.underscore.to_sym] || {})[:remember_me]).nil? ? true : 0 != x.to_i
+        = f.input :remember_me, as: :boolean, input_html: { checked: checked }
+        %p.text-right.forgot-password
+          = link_to t('.forgot_password'), new_password_path(resource_name)
+
+    .row
+      .col-xs-12
+        = f.button :submit, t('.submit')

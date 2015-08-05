@@ -1,0 +1,17 @@
+fr:
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Aucun %{entry_name}"
+          one: "<b>%{count}</b> %{entry_name}"
+          other: "<b>%{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "%{entry_name} <b>%{first} - %{last}</b> sur <b>%{total}</b> au total"
